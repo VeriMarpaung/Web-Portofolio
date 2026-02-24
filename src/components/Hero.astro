@@ -15,7 +15,7 @@ import { personal } from '../data/portfolio';
   </div>
 
   <div class="w-full max-w-5xl mx-auto px-5 sm:px-8 relative z-10">
-    <div class="w-full max-w-3xl">
+    <div class="w-full">
 
       <!-- Eyebrow -->
       <div class="flex flex-wrap items-center gap-2 mb-6 font-mono text-xs tracking-widest uppercase opacity-0 animate-[fadeUp_0.8s_0.2s_forwards]"
@@ -66,15 +66,29 @@ import { personal } from '../data/portfolio';
     -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 75%);
   }
 
-  /* Responsive font size */
+  /* Responsive font size — kalkulasi per breakpoint HP */
   .hero-name {
-    font-size: clamp(2.6rem, 13vw, 7.5rem);
+    /* Mobile kecil (< 380px): sangat konservatif */
+    font-size: 2.4rem;
+    width: 100%;
+    overflow: visible;
+    word-break: keep-all;
+    white-space: nowrap;
   }
-  @media (min-width: 640px) {
-    .hero-name { font-size: clamp(3.5rem, 11vw, 7.5rem); }
+  @media (min-width: 380px) {
+    .hero-name { font-size: 2.8rem; }
+  }
+  @media (min-width: 430px) {
+    .hero-name { font-size: 3.2rem; }
+  }
+  @media (min-width: 520px) {
+    .hero-name { font-size: clamp(3.5rem, 10vw, 5rem); }
+  }
+  @media (min-width: 768px) {
+    .hero-name { font-size: clamp(4.5rem, 9vw, 7.5rem); }
   }
   @media (min-width: 1024px) {
-    .hero-name { font-size: clamp(4rem, 9vw, 7.5rem); }
+    .hero-name { font-size: clamp(5rem, 9vw, 7.5rem); }
   }
 
   .hero-outline {

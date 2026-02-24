@@ -36,7 +36,8 @@
   --text:        #1a1a1a;
   --text-muted:  #888;
   --text-dim:    #bbb;
-  --accent:      #1a7a10;
+  /* --accent:      #1a7a10; */
+  --accent:      #6cd1eb;
   --accent-2:    #0a6b5f;
   --accent-dim:  rgba(26,122,16,0.08);
   --accent-glow: rgba(26,122,16,0.15);

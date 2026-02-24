@@ -48,7 +48,6 @@ const links = [
             <span
               id="toggleKnob"
               class="absolute top-[3px] left-[3px] w-4 h-4 rounded-full transition-transform duration-300"
-              style="background:var(--accent)"
             ></span>
           </button>
           <span class="text-sm" style="color:var(--text-muted)">☀</span>
@@ -113,9 +112,11 @@ const links = [
     if (theme === 'light') {
       html.classList.add('light');
       knob!.style.transform = 'translateX(20px)';
+      knob!.style.background = '#1a7a10';
     } else {
       html.classList.remove('light');
       knob!.style.transform = 'translateX(0)';
+      knob!.style.background = '#7fff6e';
     }
   }
 

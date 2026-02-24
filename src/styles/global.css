@@ -16,8 +16,7 @@
   --text:        #e8e8e8;
   --text-muted:  #666;
   --text-dim:    #444;
-  /*--accent:      #7fff6e; */
-  --accent:      #6cd1eb;
+  --accent:      #7fff6e;
   --accent-2:    #4fffeb;
   --accent-dim:  rgba(127,255,110,0.12);
   --accent-glow: rgba(127,255,110,0.25);
@@ -53,6 +52,16 @@ body {
   font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
   transition: background var(--transition), color var(--transition);
+}
+
+/* Pastikan semua section tidak overflow di mobile */
+section {
+  overflow-x: hidden;
+}
+
+/* Fix container padding di mobile */
+.max-w-5xl {
+  width: 100%;
 }
 
 ::selection { background: var(--accent-dim); color: var(--accent); }

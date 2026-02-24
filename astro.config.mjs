@@ -7,5 +7,5 @@ export default defineConfig({
     react(),
     tailwind(),
   ],
-  site: 'https://alexdoe.dev',
+  site: 'https://veri.dev',
 });

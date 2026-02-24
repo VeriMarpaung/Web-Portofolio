@@ -2,7 +2,7 @@
 import { personal } from '../data/portfolio';
 ---
 
-<section id="hero" class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+<section id="hero" class="relative min-h-screen flex items-center pt-24 overflow-x-hidden">
 
   <!-- Grid background -->
   <div class="absolute inset-0 hero-grid"></div>
@@ -14,38 +14,33 @@ import { personal } from '../data/portfolio';
     </div>
   </div>
 
-  <div class="max-w-5xl mx-auto px-8 relative z-10">
-    <div class="max-w-3xl">
+  <div class="w-full max-w-5xl mx-auto px-5 sm:px-8 relative z-10">
+    <div class="w-full max-w-3xl">
 
       <!-- Eyebrow -->
-      <div class="flex items-center gap-3 mb-6 font-mono text-xs tracking-widest uppercase opacity-0 animate-[fadeUp_0.8s_0.2s_forwards]"
+      <div class="flex flex-wrap items-center gap-2 mb-6 font-mono text-xs tracking-widest uppercase opacity-0 animate-[fadeUp_0.8s_0.2s_forwards]"
            style="color:var(--accent)">
-        <span class="animate-pulse">◆</span>
-        {personal.role} · Software Engineering · Semester {personal.semester}
+        <span class="animate-pulse flex-shrink-0">◆</span>
+        <span>{personal.role} · Software Engineering · Sem {personal.semester}</span>
       </div>
 
       <!-- Name -->
-      <h1 class="font-display font-extrabold leading-[0.95] tracking-tight mb-6 opacity-0 animate-[fadeUp_0.8s_0.4s_forwards]"
-          style="font-size:clamp(3.5rem,9vw,7.5rem)">
+      <h1 class="hero-name font-display font-extrabold leading-[0.95] tracking-tight mb-6 opacity-0 animate-[fadeUp_0.8s_0.4s_forwards] w-full">
         <span style="color:var(--text)">{personal.name.split(' ')[0]}</span><br />
         <span class="hero-outline">{personal.name.split(' ')[1]}.</span>
       </h1>
 
       <!-- Description -->
-      <p class="text-lg mb-10 max-w-lg leading-relaxed opacity-0 animate-[fadeUp_0.8s_0.6s_forwards]"
-         style="color:var(--text-muted)">
+      <p class="text-base sm:text-lg mb-10 leading-relaxed opacity-0 animate-[fadeUp_0.8s_0.6s_forwards]"
+         style="color:var(--text-muted); max-width:min(480px, 100%)">
         {personal.tagline}
         <strong style="color:var(--text); font-weight:500"> {personal.description}</strong>
       </p>
 
       <!-- CTAs -->
-      <div class="flex gap-4 flex-wrap opacity-0 animate-[fadeUp_0.8s_0.8s_forwards]">
-        <a href="#projects" class="btn-primary">
-          View Projects ↓
-        </a>
-        <a href="#contact" class="btn-outline">
-          Let's Talk →
-        </a>
+      <div class="flex gap-3 flex-wrap opacity-0 animate-[fadeUp_0.8s_0.8s_forwards]">
+        <a href="#projects" class="btn-primary">View Projects ↓</a>
+        <a href="#contact" class="btn-outline">Let's Talk →</a>
       </div>
 
     </div>
@@ -69,6 +64,17 @@ import { personal } from '../data/portfolio';
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 75%);
     -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 75%);
+  }
+
+  /* Responsive font size */
+  .hero-name {
+    font-size: clamp(2.6rem, 13vw, 7.5rem);
+  }
+  @media (min-width: 640px) {
+    .hero-name { font-size: clamp(3.5rem, 11vw, 7.5rem); }
+  }
+  @media (min-width: 1024px) {
+    .hero-name { font-size: clamp(4rem, 9vw, 7.5rem); }
   }
 
   .hero-outline {

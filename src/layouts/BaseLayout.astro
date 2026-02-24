@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import Cursor from '../components/Cursor.astro';
+import { personal } from '../data/portfolio';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title       = `${personal.name} — ${personal.role}`,
+  description = personal.tagline,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{title}</title>
+
+  <!-- Preload fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <Cursor />
+  <Navbar />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+
+  <script>
+    // ── Theme persistence ──
+    const saved = localStorage.getItem('theme') || 'dark';
+    if (saved === 'light') document.documentElement.classList.add('light');
+
+    // ── Custom Cursor ──
+    const cursor   = document.getElementById('cursor');
+    const follower = document.getElementById('cursor-follower');
+    if (cursor && follower) {
+      let fx = 0, fy = 0, cx = 0, cy = 0;
+      document.addEventListener('mousemove', e => {
+        cx = e.clientX; cy = e.clientY;
+        cursor.style.left = cx + 'px';
+        cursor.style.top  = cy + 'px';
+      });
+      const animate = () => {
+        fx += (cx - fx) * 0.12;
+        fy += (cy - fy) * 0.12;
+        follower.style.left = fx + 'px';
+        follower.style.top  = fy + 'px';
+        requestAnimationFrame(animate);
+      };
+      animate();
+      document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursor.style.width  = '16px';
+          cursor.style.height = '16px';
+          follower.style.width  = '56px';
+          follower.style.height = '56px';
+          follower.style.borderColor = 'var(--accent)';
+        });
+        el.addEventListener('mouseleave', () => {
+          cursor.style.width  = '10px';
+          cursor.style.height = '10px';
+          follower.style.width  = '36px';
+          follower.style.height = '36px';
+          follower.style.borderColor = 'rgba(127,255,110,0.4)';
+        });
+      });
+    }
+
+    // ── Scroll Reveal ──
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Active nav link ──
+    const sections  = document.querySelectorAll('section[id]');
+    const navLinks  = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= (s as HTMLElement).offsetTop - 200) current = s.id;
+      });
+      navLinks.forEach(a => {
+        const href = a.getAttribute('href');
+        a.classList.toggle('active', href === `#${current}` || href === `/${current}`);
+      });
+    });
+  </script>
+</body>
+</html>

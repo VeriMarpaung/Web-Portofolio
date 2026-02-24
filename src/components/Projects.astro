@@ -1,0 +1,82 @@
+---
+import { projects } from '../data/portfolio';
+---
+
+<section id="projects" class="py-24">
+  <div class="max-w-5xl mx-auto px-8">
+    <div class="section-label">Work</div>
+    <h2 class="font-display font-bold mb-3 leading-tight"
+        style="font-size:clamp(2rem,4vw,3rem); color:var(--text)">
+      Featured Projects
+    </h2>
+    <p class="mb-14" style="color:var(--text-muted); max-width:480px">
+      A selection of projects that showcase my technical skills and problem-solving approach.
+    </p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((p, i) => (
+        <article
+          class="reveal rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2"
+          style={`background:var(--bg-card); border:1px solid var(--border); transition-delay:${i * 0.1}s`}
+          onmouseenter="this.style.borderColor='rgba(127,255,110,0.25)'; this.style.boxShadow='0 20px 60px rgba(0,0,0,0.4)'"
+          onmouseleave="this.style.borderColor='var(--border)'; this.style.boxShadow='none'"
+        >
+          <!-- Thumbnail -->
+          <div class="aspect-video relative flex items-center justify-center overflow-hidden"
+               style={`background: linear-gradient(135deg, var(--bg-3), ${p.color})`}>
+            <span class="font-display font-extrabold text-7xl select-none"
+                  style="color:rgba(255,255,255,0.06)">{p.num}</span>
+            <div class="absolute inset-0"
+                 style="background:linear-gradient(to bottom, transparent 40%, var(--bg-card))">
+            </div>
+          </div>
+
+          <!-- Body -->
+          <div class="p-6">
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              {p.tags.map(tag => (
+                <span class="px-2 py-0.5 rounded font-mono text-[0.66rem]"
+                      style="background:var(--accent-dim); color:var(--accent)">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <h3 class="font-display font-bold text-xl mb-2 leading-snug"
+                style="color:var(--text)">{p.title}</h3>
+            <p class="text-sm mb-5 leading-relaxed" style="color:var(--text-muted)">{p.desc}</p>
+
+            <!-- Links -->
+            <div class="flex gap-4 pt-4" style="border-top:1px solid var(--border)">
+              <a href={p.github} target="_blank" rel="noopener"
+                 class="inline-flex items-center gap-1.5 font-mono text-xs transition-colors"
+                 style="color:var(--text-muted)"
+                 onmouseenter="this.style.color='var(--accent)'"
+                 onmouseleave="this.style.color='var(--text-muted)'">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
+                </svg>
+                GitHub
+              </a>
+              {p.demo && (
+                <a href={p.demo} target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1.5 font-mono text-xs transition-colors"
+                   style="color:var(--text-muted)"
+                   onmouseenter="this.style.color='var(--accent)'"
+                   onmouseleave="this.style.color='var(--text-muted)'">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                  Live Demo
+                </a>
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

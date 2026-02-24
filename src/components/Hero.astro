@@ -1,0 +1,129 @@
+---
+import { personal } from '../data/portfolio';
+---
+
+<section id="hero" class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+
+  <!-- Grid background -->
+  <div class="absolute inset-0 hero-grid"></div>
+
+  <!-- Glow -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+    <div class="w-[600px] h-[600px] rounded-full"
+         style="background:radial-gradient(circle, rgba(127,255,110,0.06) 0%, transparent 70%)">
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-8 relative z-10">
+    <div class="max-w-3xl">
+
+      <!-- Eyebrow -->
+      <div class="flex items-center gap-3 mb-6 font-mono text-xs tracking-widest uppercase opacity-0 animate-[fadeUp_0.8s_0.2s_forwards]"
+           style="color:var(--accent)">
+        <span class="animate-pulse">◆</span>
+        {personal.role} · Software Engineering · Semester {personal.semester}
+      </div>
+
+      <!-- Name -->
+      <h1 class="font-display font-extrabold leading-[0.95] tracking-tight mb-6 opacity-0 animate-[fadeUp_0.8s_0.4s_forwards]"
+          style="font-size:clamp(3.5rem,9vw,7.5rem)">
+        <span style="color:var(--text)">{personal.name.split(' ')[0]}</span><br />
+        <span class="hero-outline">{personal.name.split(' ')[1]}.</span>
+      </h1>
+
+      <!-- Description -->
+      <p class="text-lg mb-10 max-w-lg leading-relaxed opacity-0 animate-[fadeUp_0.8s_0.6s_forwards]"
+         style="color:var(--text-muted)">
+        {personal.tagline}
+        <strong style="color:var(--text); font-weight:500"> {personal.description}</strong>
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex gap-4 flex-wrap opacity-0 animate-[fadeUp_0.8s_0.8s_forwards]">
+        <a href="#projects" class="btn-primary">
+          View Projects ↓
+        </a>
+        <a href="#contact" class="btn-outline">
+          Let's Talk →
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2
+              font-mono text-[0.65rem] tracking-widest uppercase opacity-0 animate-[fadeUp_1s_1.2s_forwards]"
+       style="color:var(--text-dim)">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+
+</section>
+
+<style>
+  .hero-grid {
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 75%);
+  }
+
+  .hero-outline {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--text-dim);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--accent);
+    color: #0a0a0a;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px var(--accent-glow);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .btn-outline:hover {
+    color: var(--text);
+    border-color: var(--border-hover);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--text-dim), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollLine {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    50%  { transform: scaleY(1); transform-origin: top; }
+    51%  { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+</style>

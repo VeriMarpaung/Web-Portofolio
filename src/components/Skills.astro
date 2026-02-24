@@ -1,0 +1,44 @@
+---
+import { skills } from '../data/portfolio';
+---
+
+<section id="skills" class="py-24" style="background:var(--bg-2)">
+  <div class="max-w-5xl mx-auto px-8">
+    <div class="section-label">Tech Stack</div>
+    <h2 class="font-display font-bold mb-3 leading-tight"
+        style="font-size:clamp(2rem,4vw,3rem); color:var(--text)">
+      Skills &amp; Technologies
+    </h2>
+    <p class="mb-14 leading-relaxed" style="color:var(--text-muted); max-width:480px">
+      Tools and technologies I work with on a daily basis.
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {skills.map((cat, i) => (
+        <div
+          class="reveal rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1"
+          style={`background:var(--bg-card); border:1px solid var(--border); transition-delay:${i * 0.08}s`}
+          onmouseenter="this.style.borderColor='var(--border-hover)'"
+          onmouseleave="this.style.borderColor='var(--border)'"
+        >
+          <div class="font-display font-bold text-sm mb-5 tracking-wide"
+               style="color:var(--accent)">
+            {cat.icon} {cat.category}
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {cat.items.map(item => (
+              <span
+                class="px-3 py-1 rounded-full font-mono text-xs cursor-default transition-all duration-200"
+                style="background:var(--bg-3); border:1px solid var(--border); color:var(--text-muted)"
+                onmouseenter="this.style.color='var(--accent)'; this.style.borderColor='var(--accent)'; this.style.background='var(--accent-dim)'"
+                onmouseleave="this.style.color='var(--text-muted)'; this.style.borderColor='var(--border)'; this.style.background='var(--bg-3)'"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

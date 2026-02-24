@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { posts } from '../data/portfolio';
+---
+
+<BaseLayout title="Blog — Alex Doe" description="Articles on software engineering, architecture, and dev life.">
+  <div class="pt-32 pb-24 max-w-5xl mx-auto px-8">
+    <div class="section-label">Writing</div>
+    <h1 class="font-display font-bold mb-4 leading-tight"
+        style="font-size:clamp(2.5rem,5vw,4rem); color:var(--text)">
+      All Articles
+    </h1>
+    <p class="mb-16 text-lg" style="color:var(--text-muted)">
+      Thoughts on software engineering, architecture, and the dev life.
+    </p>
+
+    <div style="display:flex; flex-direction:column; gap:1.5rem">
+      {posts.map((post, i) => (
+        <a
+          href={post.href}
+          class="reveal group flex gap-6 items-start rounded-2xl p-6 transition-all duration-300"
+          style={`background:var(--bg-card); border:1px solid var(--border); transition-delay:${i*0.08}s`}
+          onmouseenter="this.style.borderColor='var(--border-hover)'; this.style.transform='translateX(6px)'"
+          onmouseleave="this.style.borderColor='var(--border)'; this.style.transform='translateX(0)'"
+        >
+          <div class="font-mono text-xs mt-1 w-20 flex-shrink-0" style="color:var(--text-dim)">
+            {post.date}
+          </div>
+          <div class="flex-1">
+            <span class="font-mono text-[0.65rem] uppercase tracking-wider px-2 py-0.5 rounded mb-3 inline-block"
+                  style="background:var(--accent-dim); color:var(--accent)">
+              {post.category}
+            </span>
+            <h2 class="font-display font-bold text-xl mb-2" style="color:var(--text)">{post.title}</h2>
+            <p class="text-sm leading-relaxed" style="color:var(--text-muted)">{post.excerpt}</p>
+          </div>
+          <div class="font-mono text-xs self-center flex-shrink-0 transition-colors"
+               style="color:var(--text-dim)">→</div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

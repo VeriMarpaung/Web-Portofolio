@@ -1,0 +1,59 @@
+---
+import { posts } from '../data/portfolio';
+---
+
+<section id="blog" class="py-24" style="background:var(--bg-2)">
+  <div class="max-w-5xl mx-auto px-8">
+    <div class="section-label">Writing</div>
+    <h2 class="font-display font-bold mb-3 leading-tight"
+        style="font-size:clamp(2rem,4vw,3rem); color:var(--text)">
+      Latest Articles
+    </h2>
+    <p class="mb-14" style="color:var(--text-muted); max-width:480px">
+      Sharing what I learn about software engineering, architecture, and dev life.
+    </p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((post, i) => (
+        <article
+          class="reveal rounded-2xl p-7 flex flex-col transition-all duration-300 hover:-translate-y-1"
+          style={`background:var(--bg-card); border:1px solid var(--border); transition-delay:${i * 0.1}s`}
+          onmouseenter="this.style.borderColor='var(--border-hover)'"
+          onmouseleave="this.style.borderColor='var(--border)'"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-mono text-[0.65rem] uppercase tracking-wider px-2 py-0.5 rounded"
+                  style="background:var(--accent-dim); color:var(--accent)">
+              {post.category}
+            </span>
+            <span class="font-mono text-[0.65rem]" style="color:var(--text-dim)">{post.date}</span>
+          </div>
+
+          <h3 class="font-display font-bold text-lg mb-3 leading-snug flex-1"
+              style="color:var(--text)">
+            {post.title}
+          </h3>
+          <p class="text-sm leading-relaxed mb-5" style="color:var(--text-muted)">{post.excerpt}</p>
+
+          <a href={post.href}
+             class="inline-flex items-center gap-2 font-mono text-xs transition-all duration-200 mt-auto"
+             style="color:var(--text-muted)"
+             onmouseenter="this.style.color='var(--accent)'; this.style.gap='0.7rem'"
+             onmouseleave="this.style.color='var(--text-muted)'; this.style.gap='0.5rem'">
+            Read Article →
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="/blog"
+         class="inline-flex items-center gap-2 font-mono text-sm transition-colors"
+         style="color:var(--text-muted)"
+         onmouseenter="this.style.color='var(--accent)'"
+         onmouseleave="this.style.color='var(--text-muted)'">
+        View all articles →
+      </a>
+    </div>
+  </div>
+</section>

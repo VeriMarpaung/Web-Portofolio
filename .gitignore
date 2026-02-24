@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Output build — tidak perlu, Netlify akan build sendiri
+dist/
+.astro/
+
+# Environment variables — RAHASIA, jangan sampai ke GitHub
+.env
+.env.local
+.env.production
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.log

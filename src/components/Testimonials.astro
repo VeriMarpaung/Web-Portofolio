@@ -1,0 +1,41 @@
+---
+import { testimonials } from '../data/portfolio';
+---
+
+<section id="testimonials" class="py-24">
+  <div class="max-w-5xl mx-auto px-8">
+    <div class="section-label">Kind Words</div>
+    <h2 class="font-display font-bold mb-3 leading-tight"
+        style="font-size:clamp(2rem,4vw,3rem); color:var(--text)">
+      Testimonials
+    </h2>
+    <p class="mb-14" style="color:var(--text-muted); max-width:480px">
+      What people I've worked with have to say.
+    </p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {testimonials.map((t, i) => (
+        <div
+          class="reveal rounded-2xl p-8 transition-all duration-300"
+          style={`background:var(--bg-card); border:1px solid var(--border); transition-delay:${i * 0.1}s`}
+          onmouseenter="this.style.borderColor='var(--border-hover)'"
+          onmouseleave="this.style.borderColor='var(--border)'"
+        >
+          <div class="font-display text-5xl leading-none mb-4" style="color:var(--accent); opacity:0.35">"</div>
+          <p class="text-sm leading-relaxed mb-6 italic" style="color:var(--text-muted)">{t.text}</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0
+                        font-display font-bold text-sm"
+                 style="background:var(--bg-3); color:var(--accent)">
+              {t.initials}
+            </div>
+            <div>
+              <div class="font-display font-bold text-sm" style="color:var(--text)">{t.name}</div>
+              <div class="font-mono text-xs" style="color:var(--text-muted)">{t.role}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

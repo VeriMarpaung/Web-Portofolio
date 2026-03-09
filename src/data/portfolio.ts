@@ -12,7 +12,7 @@ export const personal = {
   status:      'Open to Work',
   location:    'Sumatera Utara, Indonesia',
   degree:      'S.Tr.Kom. — 2026 (Expected)',
-  gpa:         '3.67 / 4.0',
+  gpa:         '3.71 / 4.0',
   university:  'Institut Teknologi Del',
   email:       'verimarpaung98@gmail.com',
   github:      'https://github.com/VeriMarpaung',

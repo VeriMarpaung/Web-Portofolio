@@ -29,15 +29,60 @@ const LINKS = (p: Props) => [
 ];
 
 export default function Contact(props: Props) {
-  const [status, setStatus] = useState<'idle' | 'sent'>('idle');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [errorText, setErrorText] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setStatus('sent');
-    setTimeout(() => {
-      setStatus('idle');
-      (e.target as HTMLFormElement).reset();
-    }, 3000);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = String(formData.get('name') || '').trim();
+    const email = String(formData.get('email') || '').trim();
+    const message = String(formData.get('message') || '').trim();
+    const website = String(formData.get('website') || '').trim();
+
+    setStatus('sending');
+    setErrorText('');
+
+    try {
+      const response = await fetch('/.netlify/functions/contact', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          website,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Backend contact endpoint is unavailable.');
+      }
+
+      setStatus('sent');
+      form.reset();
+      window.setTimeout(() => {
+        setStatus('idle');
+      }, 3000);
+    } catch {
+      // Fallback for local dev or if function not deployed yet.
+      const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+      const body = encodeURIComponent([
+        `Name: ${name}`,
+        `Email: ${email}`,
+        '',
+        'Message:',
+        message,
+      ].join('\n'));
+
+      window.location.href = `mailto:${props.email}?subject=${subject}&body=${body}`;
+      setStatus('error');
+      setErrorText('Email service belum aktif di environment ini, jadi dibuka via mail app sebagai fallback.');
+    }
   };
 
   return (
@@ -47,7 +92,7 @@ export default function Contact(props: Props) {
         className="absolute pointer-events-none"
         style={{
           width: 500, height: 500,
-          background: 'radial-gradient(circle, rgba(127,255,110,0.04) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, color-mix(in srgb, var(--accent) 15%, transparent) 0%, transparent 70%)',
           bottom: -200, right: -200,
         }}
       />
@@ -109,6 +154,15 @@ export default function Contact(props: Props) {
           {/* Form */}
           <div className="reveal" style={{ transitionDelay: '0.15s' }}>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ position: 'absolute', opacity: 0, pointerEvents: 'none', width: 1, height: 1 }}
+              />
+
               {(['name', 'email'] as const).map(field => (
                 <div key={field} style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                   <label className="font-mono text-xs uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>
@@ -160,6 +214,7 @@ export default function Contact(props: Props) {
                   background: status === 'sent' ? 'var(--accent-2)' : 'var(--accent)',
                   color: '#0a0a0a',
                 }}
+                disabled={status === 'sending'}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)';
                   (e.currentTarget as HTMLElement).style.boxShadow = '0 10px 30px var(--accent-glow)';
@@ -169,8 +224,20 @@ export default function Contact(props: Props) {
                   (e.currentTarget as HTMLElement).style.boxShadow = 'none';
                 }}
               >
-                {status === 'sent' ? '✓ Message Sent!' : 'Send Message →'}
+                {status === 'sending' ? 'Sending...' : status === 'sent' ? '✓ Message Sent' : 'Send Message →'}
               </button>
+
+              {status === 'sent' && (
+                <p className="font-mono text-xs" style={{ color: 'var(--accent)' }}>
+                  Message sent successfully. Thank you!
+                </p>
+              )}
+
+              {status === 'error' && (
+                <p className="font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
+                  {errorText}
+                </p>
+              )}
             </form>
           </div>
 

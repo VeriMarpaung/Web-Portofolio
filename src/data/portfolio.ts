@@ -17,7 +17,8 @@ export const personal = {
   email:       'verimarpaung98@gmail.com',
   github:      'https://github.com/VeriMarpaung',
   linkedin:    'https://www.linkedin.com/in/verimarpaung/',
-  cv:          '/cv veri - SE-january.pdf',
+  medium:      'https://medium.com/@verimarpaung98',
+  cv:          '/cv Veri Marpaung - Backend.pdf',
   semester:    8,
 };
 

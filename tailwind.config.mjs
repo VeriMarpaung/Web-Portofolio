@@ -11,9 +11,9 @@ export default {
       },
       colors: {
         accent: {
-          DEFAULT: '#7fff6e',
-          dim: 'rgba(127,255,110,0.12)',
-          glow: 'rgba(127,255,110,0.25)',
+          DEFAULT: '#6cd1eb',
+          dim: 'rgba(108,209,235,0.12)',
+          glow: 'rgba(108,209,235,0.25)',
         },
         dark: {
           bg:    '#0a0a0a',

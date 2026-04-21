@@ -1,5 +1,9 @@
 ---
-import { posts } from '../data/portfolio';
+import { getBlogPosts } from '../lib/blog';
+
+const posts = await getBlogPosts(3);
+
+const isExternalLink = (href: string) => href.startsWith('http://') || href.startsWith('https://');
 ---
 
 <section id="blog" class="py-24" style="background:var(--bg-2)">
@@ -36,11 +40,13 @@ import { posts } from '../data/portfolio';
           <p class="text-sm leading-relaxed mb-5" style="color:var(--text-muted)">{post.excerpt}</p>
 
           <a href={post.href}
+             target={isExternalLink(post.href) ? '_blank' : undefined}
+             rel={isExternalLink(post.href) ? 'noopener noreferrer' : undefined}
              class="inline-flex items-center gap-2 font-mono text-xs transition-all duration-200 mt-auto"
              style="color:var(--text-muted)"
              onmouseenter="this.style.color='var(--accent)'; this.style.gap='0.7rem'"
              onmouseleave="this.style.color='var(--text-muted)'; this.style.gap='0.5rem'">
-            Read Article →
+            {isExternalLink(post.href) ? 'Read on Medium ↗' : 'Read Article →'}
           </a>
         </article>
       ))}

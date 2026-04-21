@@ -7,9 +7,10 @@ import Projects     from '../components/Projects.astro';
 import GithubActivity from '../components/GithubActivity';
 import Experience   from '../components/Experience.astro';
 import Blog         from '../components/Blog.astro';
-import Testimonials from '../components/Testimonials.astro';
 import Contact      from '../components/Contact';
 import { personal } from '../data/portfolio';
+
+const githubUsername = personal.github.split('/').filter(Boolean).pop() ?? '';
 ---
 
 <BaseLayout>
@@ -17,7 +18,7 @@ import { personal } from '../data/portfolio';
   <About />
   <Skills />
   <Projects />
-  <GithubActivity client:visible />
+  <GithubActivity client:visible username={githubUsername} profileUrl={personal.github} />
   <Experience />
   <Blog />
   <Contact

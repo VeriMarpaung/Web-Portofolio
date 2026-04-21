@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { posts } from '../../data/portfolio';
+
+export async function getStaticPaths() {
+  return posts
+    .map((post) => {
+      const slug = post.href.split('/').filter(Boolean).pop();
+      if (!slug || slug === 'blog') return null;
+
+      return {
+        params: { slug },
+        props: { post },
+      };
+    })
+    .filter(Boolean);
+}
+
+const { post } = Astro.props;
+---
+
+<BaseLayout title={`${post.title} — Blog`} description={post.excerpt}>
+  <article class="pt-32 pb-24 max-w-3xl mx-auto px-8">
+    <div class="section-label">{post.category}</div>
+    <h1 class="font-display font-bold mb-4 leading-tight" style="font-size:clamp(2.2rem,5vw,3.2rem); color:var(--text)">
+      {post.title}
+    </h1>
+    <p class="font-mono text-xs uppercase tracking-wider mb-10" style="color:var(--text-dim)">
+      {post.date}
+    </p>
+
+    <div class="rounded-2xl p-7" style="background:var(--bg-card); border:1px solid var(--border)">
+      <p class="text-base leading-relaxed mb-5" style="color:var(--text-muted)">
+        {post.excerpt}
+      </p>
+      <p class="text-sm leading-relaxed" style="color:var(--text-muted)">
+        Full article content is coming soon. For now, this page confirms the route is valid and ready for expansion.
+      </p>
+    </div>
+
+    <a href="/blog" class="inline-flex mt-10 font-mono text-sm" style="color:var(--accent)">
+      ← Back to all articles
+    </a>
+  </article>
+</BaseLayout>

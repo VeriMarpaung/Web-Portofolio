@@ -3,7 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { posts } from '../../data/portfolio';
 
 export async function getStaticPaths() {
+  // Only build internal article routes. External posts (e.g. Medium) link out
+  // directly, so we don't generate placeholder pages for them.
   return posts
+    .filter((post) => post.href.startsWith('/blog/'))
     .map((post) => {
       const slug = post.href.split('/').filter(Boolean).pop();
       if (!slug || slug === 'blog') return null;

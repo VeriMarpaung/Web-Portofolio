@@ -7,8 +7,8 @@ export const personal = {
   nameShort:   'Veri.marsil',
   role:        'Back-End Developer',
   role2:       'Full-Stack Developer',
-  tagline:     'Building reliable, end-to-end web systems — from database architecture to production-ready APIs.',
-  description: 'Software Engineering student at Institut Teknologi Del, open to internship and full-time opportunities.',
+  tagline:     'Building reliable, scalable backend systems — from microservices and API gateways to production-ready, containerized services.',
+  description: 'Final-year Software Engineering student at Institut Teknologi Del (graduating 2026), open to software engineering and backend roles.',
   status:      'Open to Work',
   location:    'Sumatera Utara, Indonesia',
   degree:      'S.Tr.Kom. — 2026 (Expected)',
@@ -48,59 +48,75 @@ export const skills = [
   {
     category: 'Languages',
     icon: '💻',
-    items: ['PHP', 'Python', 'JavaScript', 'Go', 'Java', 'C'],
+    items: ['PHP', 'Java', 'Go', 'Python', 'JavaScript', 'C'],
   },
   {
-    category: 'Database & Backend',
-    icon: '🗃',
-    items: ['MySQL', 'SQLite', 'MongoDB', 'REST API', 'Microservices'],
-  },
-  {
-    category: 'Frameworks & Libraries',
+    category: 'Backend & Frameworks',
     icon: '⚡',
-    items: ['Laravel', 'React', 'Node.js', 'TensorFlow', 'Keras', 'Scikit-learn'],
+    items: ['Laravel', 'Spring Boot', 'Node.js', 'Flask', 'React'],
+  },
+  {
+    category: 'Database',
+    icon: '🗃',
+    items: ['MySQL', 'PostgreSQL', 'Redis', 'MongoDB'],
   },
   {
     category: 'Tools & Practices',
     icon: '🛠',
-    items: ['Git', 'Docker', 'Linux CLI', 'Scrum', 'Agile', 'SDLC'],
+    items: ['Docker', 'Git', 'JWT', 'API Gateway', 'Microservices', 'REST API', 'Scrum'],
   },
 ];
 export const projects = [
   {
-    num:    '01',
-    title:  'Balige Traditional Market — E-Commerce Platform',
-    desc:   'Scalable e-commerce platform for Balige traditional market. Led a team of 5, conducted user research & usability testing, and delivered complete system documentation.',
-    tags:   ['Laravel', 'MySQL', 'JavaScript'],
-    github: 'https://github.com/VeriMarpaung/Website-Balige-Traditional-Market',
-    demo:   '',
-    color:  '#1a2a1a',
+    num:     '01',
+    title:   'TAPATUPA — Multi-Tenant Microservices Platform',
+    desc:    'Final-year thesis: a multi-tenant microservices ecosystem with a centralized Laravel API Gateway enforcing strict tenant isolation, a dedicated JWT auth service for session governance, and Redis-backed rate limiting for resilience under high traffic.',
+    tags:    ['Laravel', 'Microservices', 'API Gateway', 'JWT', 'Redis'],
+    github:  '',
+    demo:    '',
+    ongoing: true,
+    color:   '#10212a',
   },
   {
     num:    '02',
+    title:  'StockFlow — Real-Time Inventory Management',
+    desc:   'Concurrency-safe stock engine that prevents overselling via optimistic locking (atomic version-guarded UPDATE returning HTTP 409 on stale writes). Event-driven pipeline across 5 containerized services with a write-through Redis cache and 40+ feature tests written test-first.',
+    tags:   ['Laravel', 'Next.js', 'PostgreSQL', 'Redis', 'Docker'],
+    github: 'https://github.com/VeriMarpaung/StockFlow',
+    demo:   '',
+    ongoing: false,
+    color:  '#1a2a1a',
+  },
+  {
+    num:    '03',
+    title:  'Balige Traditional Market — E-Commerce Platform',
+    desc:   'Full-scale e-commerce platform delivered end-to-end while leading a team of 5. Owned backend business logic via Laravel MVC and designed optimized MySQL schemas for inventory, cart state, and order processing.',
+    tags:   ['Laravel', 'MySQL', 'JavaScript'],
+    github: 'https://github.com/VeriMarpaung/Website-Balige-Traditional-Market',
+    demo:   '',
+    ongoing: false,
+    color:  '#2a1a10',
+  },
+  {
+    num:    '04',
     title:  'Chili Leaf Disease Classification — Deep Learning',
     desc:   'CNN-based image classification using VGG16 transfer learning. Collected 442 custom images, applied augmentation techniques, and achieved 95% validation accuracy.',
     tags:   ['Python', 'TensorFlow', 'VGG16', 'Keras'],
     github: 'https://github.com/VeriMarpaung/Identifikasi-Jenis-Penyakit-Pada-Daun-Cabai---PM-03',
     demo:   '',
+    ongoing: false,
     color:  '#1a1a2a',
   },
   {
-    num:    '03',
+    num:    '05',
     title:  'Hutanta Coffee — Ordering & Informational Website',
-    desc:   'Web platform for Hutanta Coffee with dual-role system (buyer & admin). Features WhatsApp/online ordering, real-time order tracking, and product management.',
+    desc:   'Web platform for Hutanta Coffee with a dual-role system (buyer & admin). Features WhatsApp/online ordering, real-time order tracking, and product management.',
     tags:   ['PHP', 'MySQL', 'JavaScript', 'Bootstrap'],
     github: 'https://github.com/VeriMarpaung/Hutanta-Coffee-PA1',
     demo:   '',
-    color:  '#2a1a10',
+    ongoing: false,
+    color:  '#2a1410',
   },
-];
-
-export const githubStats = [
-  { num: 847,  label: 'Contributions' },
-  { num: 24,   label: 'Repositories' },
-  { num: 312,  label: 'GitHub Stars' },
-  { num: 18,   label: 'Pull Requests' },
 ];
 
 // export const experience = [
@@ -126,79 +142,59 @@ export const githubStats = [
 
 export const experience = [
   {
-    date:    'Jun 2025 — Nov 2025',
-    title:   'Assistant Project Controller (Intern)',
-    company: 'Huawei · XLSmart Project (XL–Smartfren MOCN)',
-    desc:    'Coordinated weekly meetings with 30+ subcontractors across South & Central Sumatera. Built Python automation to fetch Google Sheets data, generate Excel reports, and send scheduled email summaries — reducing manual reporting work significantly.',
+    date:    'May 2025 — Present',
+    title:   'Java Developer Intern',
+    company: 'Jatis Solutions · Jakarta',
+    desc:    'Developing and maintaining enterprise backend services with Java, Spring Boot, and Grails. Writing unit and integration tests to safeguard code quality, and supporting performance optimization and refactoring of existing applications.',
+  },
+  {
+    date:    'Jun 2025 — Dec 2025',
+    title:   'Assistant Project Controller Intern',
+    company: 'Huawei Tech Investment · Palembang',
+    desc:    'Oversaw the project lifecycle across 2,000+ sites in two regions and coordinated 25 subcontractors across South & North Sumatera. Maintained Huawei\'s ISDP system and built a Python automation that pulls Google Sheets data, generates Excel reports, and sends scheduled email summaries to stakeholders.',
   },
   {
     date:    'Jan 2025 — Jul 2025',
-    title:   'Research Trainee',
-    company: 'University of Chicago · System and AI Research Training Program (Remote)',
-    desc:    'Selected among top 50 CS students internationally. Led by Prof. Haryadi Gunawi — analyzed 40+ technical papers and reproduced 5 software engineering papers from top conferences.',
+    title:   'Research Trainee — Garuda Ace 2.0',
+    company: 'University of Chicago · System & AI Research Program (Remote)',
+    desc:    'Selected among the top 50 CS students internationally for a program led by Prof. Haryadi Gunawi. Critically evaluated 40+ software engineering papers from top-tier conferences and reproduced 5 technical studies, identifying reproducibility gaps.',
   },
   {
-    date:    'Oct 2024 — Present',
+    date:    'Oct 2024 — Jun 2025',
     title:   'Head of Event Division',
     company: 'HIMATERA — IT Del Software Engineering Student Association',
-    desc:    'Led end-to-end organization of major campus events including Welcoming Party, Leadership Inauguration, and technical webinars. Managed stakeholders, venues, budgets, and sponsorships simultaneously.',
+    desc:    'Directed end-to-end execution of technical webinars and inauguration events, meeting strict deadlines while securing internal and external sponsorships and managing stakeholders, venues, and budgets.',
   },
   {
     date:    'Dec 2023 — Sep 2024',
-    title:   'Co-Mentor',
-    company: 'Kewirausahaan Pemuda Danau Toba (KWP) · Kemenko PMK',
-    desc:    'Mentored youth entrepreneurs in the Lake Toba Region on managerial, innovation, and marketing aspects. Designed and delivered training programs to help participants start and grow their businesses.',
+    title:   'Co-Mentor — KWP Program',
+    company: 'Kewirausahaan Pemuda Danau Toba · Kemenko PMK',
+    desc:    'Coached 20+ youth entrepreneurs in the Lake Toba region, delivering training programs focused on managerial competence, innovation, and marketing execution.',
   },
   {
-    date:    'Aug 2022 — Aug 2026',
-    title:   'S.Kom — Software Engineering',
-    company: 'Institut Teknologi Del · GPA: 3.67 / 4.0',
-    desc:    'Focusing on software architecture, web systems, and AI/ML applications. Active in HIMATERA and GDSC. Thesis focus area: scalable backend systems.',
+    date:    'Sep 2023 — Aug 2024',
+    title:   'Member',
+    company: 'Google Developer Student Club (GDSC) · IT Del',
+    desc:    'Contributed to peer-led projects applying Google technologies to real-world problems and deepened practical skills through intensive coding workshops and build sessions.',
+  },
+  {
+    date:    'Aug 2022 — Jul 2026 (Expected)',
+    title:   'S.Tr.Kom — Software Engineering Technology',
+    company: 'Institut Teknologi Del · GPA: 3.71 / 4.0',
+    desc:    'Bachelor of Applied Science focusing on backend development, distributed systems, and server-side architecture. Active in HIMATERA and GDSC, with a thesis on multi-tenant microservices.',
   },
 ];
 
 
+// Fallback for the Blog section. Live posts are pulled from the Medium feed
+// (see src/lib/blog.ts); these only render if that fetch fails. Keep them in
+// sync with real published articles so the offline fallback stays honest.
 export const posts = [
   {
-    category: 'Architecture',
-    date:     'Feb 2025',
-    title:    'When to Use Microservices (And When Not To)',
-    excerpt:  'A practical breakdown of when microservices genuinely help vs when they just add complexity that a monolith handles better.',
-    href:     '/blog/microservices',
-  },
-  {
-    category: 'Performance',
-    date:     'Jan 2025',
-    title:    'Optimizing PostgreSQL Queries: My Cheat Sheet',
-    excerpt:  'The indexing strategies, EXPLAIN ANALYZE tricks, and N+1 query patterns that cost me hours — so you don\'t lose yours.',
-    href:     '/blog/postgresql-optimization',
-  },
-  {
-    category: 'Career',
-    date:     'Dec 2024',
-    title:    'Building Side Projects While Finishing Your Degree',
-    excerpt:  'Honest tips on time management, scope control, and turning academic projects into portfolio pieces recruiters care about.',
-    href:     '/blog/side-projects',
-  },
-];
-
-export const testimonials = [
-  {
-    text:    'Veri consistently delivered clean, well-documented code. Their ability to understand business requirements and translate them into technical solutions is impressive for someone at this stage of their career.',
-    name:    'Budi Wijaya',
-    role:    'Senior Engineer · PT. Tech Company',
-    initials:'BW',
-  },
-  {
-    text:    'As my thesis student, Veri showed exceptional initiative. The architecture they designed for their capstone project is production-ready and demonstrates deep understanding of distributed systems.',
-    name:    'Dr. Rina Sari, M.T.',
-    role:    'Thesis Supervisor · Universitas XYZ',
-    initials:'DR',
-  },
-  {
-    text:    'Working with Veri on our platform was a great experience. They communicated clearly, hit every deadline, and shipped features that genuinely improved how our team operates.',
-    name:    'Fajar Hidayat',
-    role:    'Chairman · HMIF Universitas XYZ',
-    initials:'FH',
+    category: 'Software Engineering',
+    date:     'Feb 2026',
+    title:    'Aku Bikin Portfolio Pakai AI dan Nggak Malu Ngakuinnya',
+    excerpt:  'Cerita jujur membangun portfolio dari nol dengan bantuan AI — bagian yang berhasil, yang memalukan, dan kenapa transparan soal pakai AI justru jadi pilihan yang lebih kuat.',
+    href:     'https://medium.com/@verimarpaung98/aku-bikin-portfolio-pakai-ai-dan-nggak-malu-ngakuinnya-8ad66caabc62',
   },
 ];
